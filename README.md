@@ -4,25 +4,25 @@
 
 - [ ] Phase 1: Environment & System Setup
 
-  - [ ] Initialize Project: Create a new directory, set up a Python virtual environment (venv), and initialize Git.
+  - [x] Initialize Project: Create a new directory, set up a Python virtual environment (venv), and initialize Git.
 
-  - [ ] Install Python Libraries: Install fastapi, uvicorn, python-multipart (for uploads), moviepy, openai-whisper, scenedetect, and indic-transliteration.
+  - [x] Install Python Libraries: Install fastapi, uvicorn, python-multipart (for uploads), moviepy, openai-whisper, scenedetect, and indic-transliteration.
 
-  - [ ] Install ImageMagick: Download and install ImageMagick (required by MoviePy for text).
+  - [x] Install ImageMagick: Download and install ImageMagick (required by MoviePy for text).
 
     - [ ] Configuration: Edit moviepy config file to point to the ImageMagick binary if not detected automatically.
 
-  - [ ] Install FFmpeg: Ensure FFmpeg is installed and added to your system PATH.
+  - [x] Install FFmpeg: Ensure FFmpeg is installed and added to your system PATH.
 
-  - [ ] Acquire Fonts:
+  - [x] Acquire Fonts:
 
-    - [ ] Download a Devanagari-supported .ttf font (e.g., Google Noto Sans Devanagari or Mangal) for Hindi text.
+    - [x] Download a Devanagari-supported .ttf font (e.g., Google Noto Sans Devanagari or Mangal) for Hindi text.
 
-    - [ ] Verify a standard English font (e.g., Arial) is available.
+    - [x] Verify a standard English font (e.g., Arial) is available.
 
 - [ ] Phase 2: The API Skeleton (FastAPI)
 
-  - [ ] Create Main App: Set up main.py with a basic FastAPI instance.
+  - [x] Create Main App: Set up main.py with a basic FastAPI instance.
 
   - [ ] Temp Directory Logic: Create a utility function to manage temp/ folders for uploads and processed outputs.
 

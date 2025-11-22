@@ -2,100 +2,100 @@
 
 ## TODO
 
-[ ] Phase 1: Environment & System Setup
+- [ ] Phase 1: Environment & System Setup
 
-    [ ] Initialize Project: Create a new directory, set up a Python virtual environment (venv), and initialize Git.
+  - [ ] Initialize Project: Create a new directory, set up a Python virtual environment (venv), and initialize Git.
 
-    [ ] Install Python Libraries: Install fastapi, uvicorn, python-multipart (for uploads), moviepy, openai-whisper, scenedetect, and indic-transliteration.
+  - [ ] Install Python Libraries: Install fastapi, uvicorn, python-multipart (for uploads), moviepy, openai-whisper, scenedetect, and indic-transliteration.
 
-    [ ] Install ImageMagick: Download and install ImageMagick (required by MoviePy for text).
+  - [ ] Install ImageMagick: Download and install ImageMagick (required by MoviePy for text).
 
-        [ ] Configuration: Edit moviepy config file to point to the ImageMagick binary if not detected automatically.
+    - [ ] Configuration: Edit moviepy config file to point to the ImageMagick binary if not detected automatically.
 
-    [ ] Install FFmpeg: Ensure FFmpeg is installed and added to your system PATH.
+  - [ ] Install FFmpeg: Ensure FFmpeg is installed and added to your system PATH.
 
-    [ ] Acquire Fonts:
+  - [ ] Acquire Fonts:
 
-        [ ] Download a Devanagari-supported .ttf font (e.g., Google Noto Sans Devanagari or Mangal) for Hindi text.
+    - [ ] Download a Devanagari-supported .ttf font (e.g., Google Noto Sans Devanagari or Mangal) for Hindi text.
 
-        [ ] Verify a standard English font (e.g., Arial) is available.
+    - [ ] Verify a standard English font (e.g., Arial) is available.
 
-[ ] Phase 2: The API Skeleton (FastAPI)
+- [ ] Phase 2: The API Skeleton (FastAPI)
 
-    [ ] Create Main App: Set up main.py with a basic FastAPI instance.
+  - [ ] Create Main App: Set up main.py with a basic FastAPI instance.
 
-    [ ] Temp Directory Logic: Create a utility function to manage temp/ folders for uploads and processed outputs.
+  - [ ] Temp Directory Logic: Create a utility function to manage temp/ folders for uploads and processed outputs.
 
-    [ ] Endpoint 1 (Upload): Create POST /process-video that:
+  - [ ] Endpoint 1 (Upload): Create POST /process-video that:
 
-        [ ] Accepts a video file (UploadFile).
+    - [ ] Accepts a video file (UploadFile).
 
-        [ ] Accepts a form field for language_mode ("english", "hindi", "hinglish").
+    - [ ] Accepts a form field for language_mode ("english", "hindi", "hinglish").
 
-        [ ] Saves the video locally.
+    - [ ] Saves the video locally.
 
-        [ ] Triggers a Background Task.
+    - [ ] Triggers a Background Task.
 
-        [ ] Returns a job_id immediately.
+    - [ ] Returns a job_id immediately.
 
-    [ ] Endpoint 2 (Status): Create GET /status/{job_id} to check if processing is done.
+  - [ ] Endpoint 2 (Status): Create GET /status/{job_id} to check if processing is done.
 
-    [ ] Endpoint 3 (Download): Create GET /download/{job_id} to serve the final .mp4 using FileResponse.
+  - [ ] Endpoint 3 (Download): Create GET /download/{job_id} to serve the final .mp4 using FileResponse.
 
-[ ] Phase 3: Core Logic - Audio & Transcription
+- [ ] Phase 3: Core Logic - Audio & Transcription
 
-    [ ] Audio Extraction: Write a function using moviepy to strip audio from the input video to a temp .mp3 or .wav file.
+  - [ ] Audio Extraction: Write a function using moviepy to strip audio from the input video to a temp .mp3 or .wav file.
 
-    [ ] Whisper Integration:
+  - [ ] Whisper Integration:
 
-        [ ] Write a function to load the Whisper model (start with base model).
+    - [ ] Write a function to load the Whisper model (start with base model).
 
-        [ ] Logic Branch A (English): If user selects English, run model.transcribe(audio, language='en').
+    - [ ] Logic Branch A (English): If user selects English, run model.transcribe(audio, language='en').
 
-        [ ] Logic Branch B (Hindi/Hinglish): If user selects Hindi/Hinglish, run model.transcribe(audio, language='hi').
+    - [ ] Logic Branch B (Hindi/Hinglish): If user selects Hindi/Hinglish, run model.transcribe(audio, language='hi').
 
-    [ ] Transliteration Engine (The Hinglish Logic):
+  - [ ] Transliteration Engine (The Hinglish Logic):
 
-        [ ] Create a helper function using indic-transliteration.
+    - [ ] Create a helper function using indic-transliteration.
 
-        [ ] Input: Devanagari text string (from Whisper).
+    - [ ] Input: Devanagari text string (from Whisper).
 
-        [ ] Output: Romanized text string (Hinglish).
+    - [ ] Output: Romanized text string (Hinglish).
 
-        [ ] Integrate this into the pipeline only if language_mode == "hinglish".
+    - [ ] Integrate this into the pipeline only if language_mode == "hinglish".
 
-[ ] Phase 4: Video Processing (The "Burn-in")
+- [ ] Phase 4: Video Processing (The "Burn-in")
 
-    [ ] Subtitle Segment Processor:
+  - [ ] Subtitle Segment Processor:
 
-        [ ] Create a function that iterates through Whisper segments.
+    - [ ] Create a function that iterates through Whisper segments.
 
-        [ ] Font Selector: Logic to choose the .ttf path based on language (Hindi Font vs English Font).
+    - [ ] Font Selector: Logic to choose the .ttf path based on language (Hindi Font vs English Font).
 
-    [ ] Clip Generation:
+  - [ ] Clip Generation:
 
-        [ ] Generate a TextClip (MoviePy) for each subtitle segment.
+    - [ ] Generate a TextClip (MoviePy) for each subtitle segment.
 
-        [ ] Configure styling: Font size (relative to video height), Color (White), Stroke (Black border), Position (Bottom Center).
+    - [ ] Configure styling: Font size (relative to video height), Color (White), Stroke (Black border), Position (Bottom Center).
 
-        [ ] Set the start_time and duration for each TextClip based on Whisper timestamps.
+    - [ ] Set the start_time and duration for each TextClip based on Whisper timestamps.
 
-    [ ] Compositing:
+  - [ ] Compositing:
 
-        [ ] Load original video as VideoFileClip.
+    - [ ] Load original video as VideoFileClip.
 
-        [ ] Create a CompositeVideoClip combining the Original Video + List of TextClips.
+    - [ ] Create a CompositeVideoClip combining the Original Video + List of TextClips.
 
-    [ ] Rendering:
+  - [ ] Rendering:
 
-        [ ] Write the final video using write_videofile.
+    - [ ] Write the final video using write_videofile.
 
-        [ ] Settings: codec='libx264', audio_codec='aac', threads=4 (or more).
+    - [ ] Settings: codec='libx264', audio_codec='aac', threads=4 (or more).
 
-[ ] Phase 5: Cleanup & Optimization
+- [ ] Phase 5: Cleanup & Optimization
 
-    [ ] Garbage Collection: Write a utility to delete the uploaded raw video and the extracted audio file after processing is complete (keep only the final output).
+  - [ ] Garbage Collection: Write a utility to delete the uploaded raw video and the extracted audio file after processing is complete (keep only the final output).
 
-    [ ] Error Handling: Add try/except blocks to catch Whisper failures or MoviePy rendering errors and update the job status to "failed".
+  - [ ] Error Handling: Add try/except blocks to catch Whisper failures or MoviePy rendering errors and update the job status to "failed".
 
-    [ ] GPU Check: Add a startup check to see if CUDA is available for Whisper (prints a warning if running on CPU).
+  - [ ] GPU Check: Add a startup check to see if CUDA is available for Whisper (prints a warning if running on CPU).

@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] Phase 1: Environment & System Setup
+- [x] Phase 1: Environment & System Setup
 
   - [x] Initialize Project: Create a new directory, set up a Python virtual environment (venv), and initialize Git.
 
@@ -10,7 +10,7 @@
 
   - [x] Install ImageMagick: Download and install ImageMagick (required by MoviePy for text).
 
-    - [ ] Configuration: Edit moviepy config file to point to the ImageMagick binary if not detected automatically.
+    - [x] Configuration: Edit moviepy config file to point to the ImageMagick binary if not detected automatically.
 
   - [x] Install FFmpeg: Ensure FFmpeg is installed and added to your system PATH.
 
@@ -20,27 +20,27 @@
 
     - [x] Verify a standard English font (e.g., Arial) is available.
 
-- [ ] Phase 2: The API Skeleton (FastAPI)
+- [x] Phase 2: The API Skeleton (FastAPI)
 
   - [x] Create Main App: Set up main.py with a basic FastAPI instance.
 
-  - [ ] Temp Directory Logic: Create a utility function to manage temp/ folders for uploads and processed outputs.
+  - [x] Temp Directory Logic: Create a utility function to manage temp/ folders for uploads and processed outputs.
 
-  - [ ] Endpoint 1 (Upload): Create POST /process-video that:
+  - [x] Endpoint 1 (Upload): Create POST /process-video that:
 
-    - [ ] Accepts a video file (UploadFile).
+    - [x] Accepts a video file (UploadFile).
 
-    - [ ] Accepts a form field for language_mode ("english", "hindi", "hinglish").
+    - [x] Accepts a form field for language_mode ("english", "hindi", "hinglish").
 
-    - [ ] Saves the video locally.
+    - [x] Saves the video locally.
 
-    - [ ] Triggers a Background Task.
+    - [x] Triggers a Background Task.
 
-    - [ ] Returns a job_id immediately.
+    - [x] Returns a job_id immediately.
 
-  - [ ] Endpoint 2 (Status): Create GET /status/{job_id} to check if processing is done.
+  - [x] Endpoint 2 (Status): Create GET /status/{job_id} to check if processing is done.
 
-  - [ ] Endpoint 3 (Download): Create GET /download/{job_id} to serve the final .mp4 using FileResponse.
+  - [x] Endpoint 3 (Download): Create GET /download/{job_id} to serve the final .mp4 using FileResponse.
 
 - [ ] Phase 3: Core Logic - Audio & Transcription
 
